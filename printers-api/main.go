@@ -15,6 +15,7 @@ func main() {
   router.POST("/add_printer", api.AddPrinter)
   router.GET("/change_status/:ip", api.ChangePrinterStatus)
   router.GET("/update_name/:ip", api.ChangePrinterName)
+  router.DELETE("/remove_printer/:ip", api.RemovePrinterByIp)
 
   router.Run("localhost:8080")
 }

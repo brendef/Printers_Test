@@ -56,3 +56,13 @@ func ChangePrinterName(context *gin.Context) {
   result := database.ChangePrinterName(printer, name)
   context.IndentedJSON(http.StatusCreated, result)
 }
+
+func RemovePrinterByIp(context *gin.Context) {
+
+  ip := context.Param("ip")
+  printer := database.GetPrinterByIp(ip)
+
+  result := database.RemovePrinter(printer)
+  context.IndentedJSON(http.StatusCreated, result)
+
+}

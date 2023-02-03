@@ -159,3 +159,18 @@ func ChangePrinterName(printer Printer, name string) gin.H {
 
   return gin.H{"message": "Printers name changed succesfully"}
 }
+
+func RemovePrinter(printer Printer) gin.H {
+  database := openConnection()
+
+  deletePrinter, error := database.Prepare("DELETE FROM Printers WHERE ip_address=?")
+
+  if error != nil {
+    log.Fatal(error)
+  }
+
+  deletePrinter.Exec(printer.Ip_address)
+
+  return gin.H{"message":"Printer removed succesfully"}
+  
+}
